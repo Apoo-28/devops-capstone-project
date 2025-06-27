@@ -15,6 +15,7 @@ spec:
     - name: repo-url
     - name: branch
       default: main
+    - name: build-image     # ✅ Added missing parameter
   tasks:
     - name: init
       workspaces:
@@ -30,9 +31,9 @@ spec:
       taskRef:
         name: git-clone
       params:
-      - name: url
-        value: $(params.repo-url)
-      - name: revision
-        value: $(params.branch)
+        - name: url
+          value: $(params.repo-url)
+        - name: revision
+          value: $(params.branch)
       runAfter:
         - init
